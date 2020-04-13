@@ -23,8 +23,7 @@ router.post('/', async (req, res) => {
   if (!newElement.bar || !newElement.baz) {
     res.status(400).json({ msg: 'incorrect input' });
   }
-  const condition = req.body.id ? { _id: req.body.id } : {};
-  await Foo.findOneAndUpdate(condition, newElement, {
+  await Foo.update({ bar: req.body.bar }, newElement, {
     upsert: true,
   });
 
